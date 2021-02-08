@@ -1,0 +1,1405 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"convert",
+				"convertSortKey\t(table.php)"
+			],
+			[
+				"protect_",
+				"protect_judge_at\tabc"
+			],
+			[
+				"emer",
+				"emergency_dispatch_at\tabc"
+			],
+			[
+				"async",
+				"asyncManager\tabc"
+			],
+			[
+				"componen",
+				"components\t(index.vue)"
+			],
+			[
+				"asy",
+				"asyncManager\tabc"
+			],
+			[
+				"flex-row",
+				"flex-row-end-center\t(index.vue)"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"pic",
+				"picture-list\t(faq-edit-popup.component.vue)"
+			],
+			[
+				"rep",
+				"replyList\tabc"
+			],
+			[
+				"norm",
+				"normal-button\t(faq-edit-popup.component.vue)"
+			],
+			[
+				"com",
+				"complaint\t(abuse-case-edit-popup.vue)"
+			],
+			[
+				"facili",
+				"facilityList\tabc"
+			],
+			[
+				"faci",
+				"facilityList\tabc"
+			],
+			[
+				"hand",
+				"handbookList\tabc"
+			],
+			[
+				"handboo",
+				"handbookList\tabc"
+			],
+			[
+				"Csv_",
+				"Csv_Exporter_Mie\t(mie.php)"
+			],
+			[
+				"type-label",
+				"type-label-save\tabc"
+			],
+			[
+				"draft",
+				"draftRiskAssessmentList\tabc"
+			],
+			[
+				"abuseCase",
+				"abuseCaseID\tabc"
+			],
+			[
+				"old_ta",
+				"old_table_name\tabc"
+			],
+			[
+				"PRI",
+				"PRIMARY\tabc"
+			],
+			[
+				"newCo",
+				"newColumnMap\tabc"
+			],
+			[
+				"get",
+				"getAlterSql\tabc"
+			],
+			[
+				"newA",
+				"newAutoIncrementColumn\tabc"
+			],
+			[
+				"newI",
+				"newIndexSql\tabc"
+			],
+			[
+				"oldIn",
+				"oldIndexMap\tabc"
+			],
+			[
+				"quote",
+				"quoted_column_list\tabc"
+			],
+			[
+				"oldI",
+				"oldIndexMap\tabc"
+			],
+			[
+				"staffU",
+				"staffUserIDList\tabc"
+			],
+			[
+				"filter",
+				"filteredDataList\tabc"
+			],
+			[
+				"client_id",
+				"client_id_list\tabc"
+			],
+			[
+				"abu",
+				"abuseCaseId\tabc"
+			],
+			[
+				"abuseCaseId",
+				"abuseCaseIdConverter\t(abuse_case_item_editor.js)"
+			],
+			[
+				"copyP",
+				"copyPerson\tabc"
+			],
+			[
+				"getPers",
+				"getPersonAge\t(util.js)"
+			],
+			[
+				"require",
+				"requireLength\tabc"
+			],
+			[
+				"regi",
+				"register_user_id\t(research.php)"
+			],
+			[
+				"kind",
+				"kindList\tabc"
+			],
+			[
+				"unprint",
+				"unprint\tabc"
+			],
+			[
+				"with_person",
+				"with_person_name\t(custom_table.php)"
+			],
+			[
+				"resea",
+				"researchList\tabc"
+			],
+			[
+				"popupVer",
+				"popupVerticalAlignment\tabc"
+			],
+			[
+				"copyPer",
+				"copyPersonList\tabc"
+			],
+			[
+				"white",
+				"white-space"
+			],
+			[
+				"rgb",
+				"rgb\trgb() creates a Color from red, green, and blue values"
+			],
+			[
+				"abuse_ca",
+				"abuse_case_id\tabc"
+			],
+			[
+				"warabe",
+				"warabeID\tabc"
+			],
+			[
+				"clien",
+				"client_id\tabc"
+			],
+			[
+				"sub_k",
+				"sub_kind_detail\tabc"
+			],
+			[
+				"qr",
+				"qrKindList\tabc"
+			],
+			[
+				"prote",
+				"protect_at"
+			],
+			[
+				"notice_route",
+				"notice_route_detail"
+			],
+			[
+				"is_link",
+				"is_linked"
+			],
+			[
+				"sub",
+				"subTexts"
+			],
+			[
+				"user_id_",
+				"user_id_pair"
+			],
+			[
+				"login_mi",
+				"login_mistake_at"
+			],
+			[
+				"large",
+				"large_picture_thumbnail"
+			],
+			[
+				"imagefill",
+				"imagefilledpolygon"
+			],
+			[
+				"division",
+				"division_id"
+			],
+			[
+				"ene",
+				"enemies"
+			],
+			[
+				"before",
+				"before_enemies"
+			],
+			[
+				"target_",
+				"target_index"
+			],
+			[
+				"rese",
+				"research_id"
+			],
+			[
+				"researc",
+				"research_answer"
+			],
+			[
+				"abuse_",
+				"abuse_case"
+			],
+			[
+				"abuse",
+				"abuse_case"
+			],
+			[
+				"staff_u",
+				"staff_user_id"
+			],
+			[
+				"id_",
+				"id_list"
+			],
+			[
+				"method",
+				"get_class_methods"
+			],
+			[
+				"person_id",
+				"person_id_converter"
+			],
+			[
+				"array_key",
+				"array_keys"
+			],
+			[
+				"groupL",
+				"groupListMap"
+			],
+			[
+				"Uketsuke",
+				"UketsukeBangou"
+			],
+			[
+				"new",
+				"recieveNewMessage"
+			],
+			[
+				"endAt",
+				"endAtKey"
+			],
+			[
+				"Shuuke",
+				"ShuuketsuFlag"
+			],
+			[
+				"user_id",
+				"user_id_list"
+			],
+			[
+				"abuseCaseID",
+				"abuseCaseIDList"
+			],
+			[
+				"person",
+				"person_id"
+			],
+			[
+				"warabe_",
+				"warabe_id_converter"
+			],
+			[
+				"family",
+				"family_index"
+			],
+			[
+				"fix",
+				"fixRows"
+			],
+			[
+				"abuse_case",
+				"abuse_case_id"
+			],
+			[
+				"exe",
+				"execute_at"
+			],
+			[
+				"max_se",
+				"max_severity_index"
+			],
+			[
+				"notice_",
+				"notice_content"
+			],
+			[
+				"copy",
+				"copyPersonList"
+			],
+			[
+				"text-ali",
+				"text-align-center"
+			],
+			[
+				"family_su",
+				"family_summary_update_at"
+			],
+			[
+				"family_",
+				"family_person"
+			],
+			[
+				"abuseC",
+				"abuseCase"
+			],
+			[
+				"record",
+				"recordList"
+			],
+			[
+				"userNa",
+				"userNames"
+			],
+			[
+				"key",
+				"keywords"
+			],
+			[
+				"query",
+				"queryCondition"
+			],
+			[
+				"staff_user",
+				"staff_user_custom_table"
+			],
+			[
+				"temp",
+				"temp_file"
+			],
+			[
+				"exa",
+				"examination"
+			],
+			[
+				"exmi",
+				"with_examination_list"
+			],
+			[
+				"flex-row-",
+				"flex-row-end-center"
+			],
+			[
+				"background",
+				"background-color\tproperty"
+			],
+			[
+				"pictureGroupList",
+				"pictureGroupListList"
+			],
+			[
+				"ins",
+				"instance_list"
+			],
+			[
+				"default",
+				"defaultText"
+			],
+			[
+				"PictureG",
+				"PictureGroupTag"
+			],
+			[
+				"bakground",
+				"background-color\tproperty"
+			],
+			[
+				"personL",
+				"personList"
+			],
+			[
+				"fac",
+				"facilityID"
+			],
+			[
+				"facility",
+				"facility_id"
+			],
+			[
+				"select",
+				"selectValue"
+			],
+			[
+				"lumpE",
+				"lumpEdit"
+			],
+			[
+				"address",
+				"address_list"
+			],
+			[
+				"onClick",
+				"onClickSearchButton"
+			],
+			[
+				"same",
+				"same_date"
+			],
+			[
+				"chat_gro",
+				"chat_group_id"
+			],
+			[
+				"natural",
+				"naturalWidth"
+			],
+			[
+				"zoom",
+				"zoomScale"
+			],
+			[
+				"canvasRe",
+				"canvasResizeInfo"
+			],
+			[
+				"simulationRe",
+				"simulationResult"
+			],
+			[
+				"person_",
+				"person_list"
+			],
+			[
+				"appro",
+				"approval_user_id_list"
+			],
+			[
+				"copy_",
+				"copy_data_list"
+			],
+			[
+				"copyG",
+				"copyGroupGetter"
+			],
+			[
+				"approval",
+				"approvalList"
+			],
+			[
+				"chat_g",
+				"chat_group_id"
+			],
+			[
+				"RiskAss",
+				"RiskAssessmentAnswer"
+			],
+			[
+				"Res",
+				"ResearchAnswer"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 137.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"packagere",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"i",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"package",
+				"Package Control: List Packages"
+			],
+			[
+				"vuenext",
+				"VueNextFormatter"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"Package Control: remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"convertto",
+				"ConvertToUTF8: Reload with Encoding"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"list pa",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control: li",
+				"Package Control: List Packages"
+			],
+			[
+				"tra",
+				"Trailing Spaces: Toggle Trailing Spaces Highlighting"
+			],
+			[
+				"trailing",
+				"Trailing Spaces: Toggle Trailing Spaces Highlighting"
+			]
+		],
+		"width": 476.0
+	},
+	"console":
+	{
+		"height": 202.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Projects/test/bilibili-manga-translate-supporter"
+	],
+	"file_history":
+	[
+		"/C/Projects/aist/takaoka/pipeline-module/build.bat",
+		"/C/Projects/aist/takaoka/pipeline-module/vue/scss/bootstrap.scss",
+		"/C/Projects/aist/takaoka/pipeline-module/vue/page/model/index.vue",
+		"/C/xampp/htdocs/aican/deploy.js",
+		"/C/Projects/test/bilibili-manga-translate-supporter/.gitignore",
+		"/C/Projects/aist/takaoka/pipeline-module/vue/page/model.vue",
+		"/C/Projects/aist/takaoka/pipeline-module/vue/entry.js",
+		"/C/Projects/aist/takaoka/pipeline-module/gulpfile_server.js",
+		"/C/Projects/aist/takaoka/pipeline-module/vue/../webpack.config.js",
+		"/C/Projects/aist/takaoka/pipeline-module/gulpfile.js",
+		"/C/Projects/aist/takaoka/pipeline-module/docker/main/package.json",
+		"/C/Projects/aist/takaoka/pipeline-module/docker-compose.yml",
+		"/C/Projects/aist/takaoka/pipeline-module/docker/main/Dockerfile",
+		"/C/Projects/aist/takaoka/pipeline-module/.gitignore",
+		"/C/Projects/aist/takaoka/pipeline-module/docker/builder/build.js",
+		"/C/Users/hase/Desktop/etc/食べログ/dump.php",
+		"/C/Projects/aist/takaoka/pipeline-module/server/data/project/sample.json",
+		"/C/Projects/aist/takaoka/injury-annotator/web-library/php/controller/api.php",
+		"/C/Projects/aist/takaoka/injury-annotator/web-library/php/exception/multi_exception.php",
+		"/C/Projects/aist/takaoka/injury-annotator/web-library/php/exception/http_bad_request_exception.php",
+		"/C/Projects/aist/takaoka/injury-annotator/web-library/php/exception/http_forbidden_exception.php",
+		"/C/Projects/aist/takaoka/injury-annotator/web-library/php/api/base.php",
+		"/C/Projects/aist/takaoka/pipeline-module/.env",
+		"/C/Projects/aist/takaoka/pipeline-module/vue/app.vue",
+		"/C/Projects/aist/takaoka/pipeline-module/server/src/main/resources/public/daemon.py",
+		"/C/Projects/aist/takaoka/pipeline-module/server/r/sample/config.properties",
+		"/C/Projects/aist/takaoka/pipeline-module/vue/page/index.vue",
+		"/C/Projects/aist/takaoka/pipeline-module/vue/page/index2.vue",
+		"/C/Projects/aist/takaoka/pipeline-module/server/sample.py",
+		"/C/Projects/aist/takaoka/pipeline-module/server/python/sample/sample.py",
+		"/C/Projects/aist/takaoka/pipeline-module/vue/model/component-loader.js",
+		"/C/Projects/aist/takaoka/pipeline-module/vue/component/sample-component.vue",
+		"/C/Projects/aist/takaoka/pipeline-module/README.md",
+		"/C/xampp/htdocs/aican/apps/main/classes/data/risk_assessment.php",
+		"/C/xampp/htdocs/aican/vue/main/page/notification/index-item.component.vue",
+		"/C/xampp/htdocs/aican/vue/admin/page/csv/export/risk_assessment.vue",
+		"/C/xampp/htdocs/aican/apps/library/db/table.php",
+		"/C/xampp/htdocs/aican/vue/main/component/history/abuse-case-list-item.vue",
+		"/C/xampp/htdocs/aican/apps/main/classes/model/custom_table.php",
+		"/C/xampp/htdocs/aican/vue/main/component/person/abuse_case/abuse-case-edit-popup.vue",
+		"/C/xampp/htdocs/aican/vue/model/util.js",
+		"/C/xampp/htdocs/aican/apps/library/util/image_utils.php",
+		"/C/xampp/htdocs/aican/vue/main/component/id-converter-duplicate-caution-popup.vue",
+		"/C/xampp/htdocs/aican/vue/main/page/family/history.vue",
+		"/C/xampp/htdocs/aican/vue/main/page/register/index.vue",
+		"/C/xampp/htdocs/aican/vue/main/component/chat/chat-group.vue",
+		"/C/xampp/htdocs/aican/vue/main/template/template.vue",
+		"/C/xampp/htdocs/aican/vue/main/page/notification/index.vue",
+		"/C/xampp/htdocs/aican/vue/main/component/chat/chat-component.vue",
+		"/C/xampp/htdocs/aican/vue/main/component/chat/chat-message-list.vue",
+		"/C/xampp/htdocs/aican/vue/main/page/person/history/index.vue",
+		"/C/xampp/htdocs/aican/vue/main/component/person/risk-assessment/risk-assessment-editor.vue",
+		"/C/xampp/htdocs/aican/apps/main/classes/data/person.php",
+		"/C/xampp/htdocs/aican/vue/component/form/input-datetime-range.vue",
+		"/C/xampp/htdocs/aican/vue/component/calendar/calendar-range-popup.vue",
+		"/C/xampp/htdocs/aican/vue/component/calendar/calendar-range-component.vue",
+		"/C/xampp/htdocs/aican/vue/component/calendar/input-date-in-calendar.vue",
+		"/C/xampp/htdocs/aican/vue/main/page/register/family.vue",
+		"/C/xampp/htdocs/aican/vue/main/page/index.vue",
+		"/C/xampp/htdocs/aican/vue/main/page/person/research/edit.vue",
+		"/C/xampp/htdocs/aican/apps/main/config/constants.php",
+		"/C/xampp/htdocs/aican/vue/main/component/date-range-component.vue",
+		"/C/xampp/htdocs/aican/apps/main/classes/data/person_address.php",
+		"/C/xampp/htdocs/aican/apps/main/classes/model/csv/exporter/mie.php",
+		"/C/xampp/htdocs/aican/vue/component/mark/filtered-icon.vue",
+		"/C/xampp/htdocs/aican/vue/img/trash.svg",
+		"/C/xampp/htdocs/aican/vue/main/page/person/history/timeline.component.vue",
+		"/C/xampp/htdocs/aican/vue/main/page/person/history/list.component.vue",
+		"/C/xampp/htdocs/aican/vue/login/page/index.vue",
+		"/C/xampp/htdocs/aican/vue/main/page/person/history/abuse_case.component.vue",
+		"/C/xampp/htdocs/aican/vue/main/component/person/abuse_case/abuse-case-data-start-popup.vue",
+		"/C/xampp/htdocs/aican/apps/main/classes/data/meeting.php",
+		"/C/xampp/htdocs/aican/apps/main/classes/model/csv/importer/mie.php",
+		"/C/xampp/htdocs/aican/apps/main/classes/controller/index.php",
+		"/C/xampp/htdocs/aican/apps/main/views/index.php",
+		"/C/xampp/htdocs/aican/apps/main/bootstrap.php",
+		"/C/xampp/htdocs/aican/vue/main/entry.js",
+		"/C/xampp/htdocs/aican/vue/main/component/person/person-edit-popup.vue",
+		"/C/xampp/htdocs/aican/gulpfile.js",
+		"//192.168.100.3/project/AIST/20201003_橋本様_Web調査/98_保守運用報告書/20210105/script.php",
+		"//192.168.100.3/project/AIST/20201001_坂本様_児童相談所と市区町村における連携に関する全国横断Webシステム構築と調査の保守運用/98_保守運用報告書/20210105/log/access_log-20201213",
+		"/C/Users/hase/Desktop/sutetemoii/aican_20201225/gulpfile.js",
+		"/C/xampp/htdocs/aican/vue/main/component/_design/button/border-button.vue",
+		"/C/xampp/htdocs/aican/vue/main/page/person/history/restore-popup.component.vue",
+		"/C/xampp/htdocs/aican/apps/main/classes/data/research.php",
+		"/C/xampp/htdocs/aican/vue/component/_design/normal-popup.vue",
+		"/C/xampp/htdocs/aican/apps/main/classes/data/abuse_case.php",
+		"/C/xampp/htdocs/aican/apps/main/classes/api/abuse_case_api.php",
+		"/C/xampp/htdocs/aican/apps/main/classes/model/api/database.php",
+		"/C/xampp/htdocs/aican/apps/main/classes/api/admin/export_api.php",
+		"/C/xampp/htdocs/aican/vue/component/form/input-select.vue",
+		"/C/xampp/htdocs/aican/apps/main/classes/api/faq_api.php",
+		"/C/xampp/htdocs/aican/apps/main/classes/data/faq.php",
+		"/C/xampp/htdocs/aican/vue/main/page/faq/faq-edit-popup.component.vue",
+		"/C/xampp/htdocs/aican/vue/main/page/faq/faq-csv-download-popup.component.vue",
+		"/C/xampp/htdocs/aican/vue/main/page/faq/index.vue",
+		"/C/xampp/htdocs/aican/vue/main/page/faq/faq-csv-popup-download.component.vue",
+		"/C/xampp/htdocs/aican/vue/main/page/faq/faq-status-label.component.vue",
+		"/C/xampp/htdocs/aican/vue/main/page/faq/detail.vue",
+		"/C/xampp/htdocs/aican/apps/main/classes/api/person_api.php",
+		"/C/xampp/htdocs/aican/apps/main/classes/data/faq_picture.php",
+		"/C/xampp/htdocs/aican/vue/component/mark/triangle.vue",
+		"/C/xampp/htdocs/aican/vue/component/form/input-search.vue",
+		"/C/xampp/htdocs/aican/vue/main/page/faq/faq-csv-popup.component.vue",
+		"/C/xampp/htdocs/aican/apps/library/db/database_column.php",
+		"/C/xampp/htdocs/aican/apps/library/db/mysql_like.php",
+		"/C/xampp/htdocs/aican/apps/db/table/faq_picture.php",
+		"/C/xampp/htdocs/aican/vue/main/component/_design/button/black-button.vue",
+		"/C/xampp/htdocs/aican/vue/main/component/_design/text-ellipsis.vue",
+		"/C/xampp/htdocs/aican/vue/main/page/faq/faq-picture-popup.component.vue",
+		"/C/xampp/htdocs/aican/vue/component/mark/cross-mark.vue",
+		"/C/xampp/htdocs/aican/vue/model/constants.json",
+		"/C/xampp/htdocs/aican/vue/model/constants.js",
+		"/C/xampp/htdocs/aican/vue/scss/_bootstrap.scss",
+		"/C/xampp/htdocs/aican/apps/main/classes/controller/api.php",
+		"/C/xampp/htdocs/aican/apps/main/classes/api/picture_api.php",
+		"/C/xampp/htdocs/aican/vue/component/loading-div.vue",
+		"/C/xampp/htdocs/aican/vue/model/async-manager.js",
+		"/C/xampp/htdocs/aican/apps/main/classes/data/picture.php",
+		"/C/xampp/htdocs/aican/apps/library/util/file_utils.php",
+		"/C/xampp/htdocs/aican/apps/main/classes/model/api/base.php",
+		"/C/xampp/htdocs/aican/apps/main/logs/2020/12/17.php",
+		"/C/xampp/htdocs/aican/apps/main/logs/2020/12/18.php",
+		"/C/xampp/htdocs/aican/apps/db/table/faq.php",
+		"/C/xampp/htdocs/aican/vue/main/component/user/user-name.vue",
+		"/C/xampp/htdocs/aican/apps/library/util/pager.php",
+		"/C/xampp/htdocs/aican/vue/component/form-alert.vue",
+		"/C/xampp/htdocs/aican/vue/login/component/normal-popup.vue"
+	],
+	"find":
+	{
+		"height": 22.0
+	},
+	"find_in_files":
+	{
+		"height": 101.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 103.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 126.0
+	},
+	"output.SublimeLinter Messages":
+	{
+		"height": 147.0
+	},
+	"output.exec":
+	{
+		"height": 180.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/PHP.sublime-build",
+	"project": "bmts.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"daemon.py",
+				"server\\src\\main\\resources\\public\\daemon.py"
+			],
+			[
+				"abuse-case-edi",
+				"[Front] 一般画面\\component\\person\\abuse_case\\abuse-case-edit-popup.vue"
+			],
+			[
+				"util.js",
+				"[Front] JSモデル\\util.js"
+			],
+			[
+				"utils",
+				"[Back] ライブラリ\\util\\image_utils.php"
+			],
+			[
+				"id-converter-duplicate-caution-popup",
+				"[Front] 一般画面\\component\\id-converter-duplicate-caution-popup.vue"
+			],
+			[
+				"abuse-case-e",
+				"[Front] 一般画面\\component\\person\\abuse_case\\abuse-case-edit-popup.vue"
+			],
+			[
+				"table.php",
+				"[Back] ライブラリ\\db\\table.php"
+			],
+			[
+				"export/risk",
+				"[Front] 管理者画面\\page\\csv\\export\\risk_assessment.vue"
+			],
+			[
+				"custom",
+				"[Back] モデル\\custom_table.php"
+			],
+			[
+				"risk_",
+				"[Back] DBクラス\\risk_assessment.php"
+			],
+			[
+				"abuse-case-list-item",
+				"[Front] 一般画面\\component\\history\\abuse-case-list-item.vue"
+			],
+			[
+				"noti",
+				"[Front] 一般画面\\page\\notification\\index.vue"
+			],
+			[
+				"chat/g",
+				"[Front] 一般画面\\component\\chat\\chat-group.vue"
+			],
+			[
+				"input-date-in-calendar",
+				"[Front] Vueコンポーネント\\calendar\\input-date-in-calendar.vue"
+			],
+			[
+				"calendar-range-component",
+				"[Front] Vueコンポーネント\\calendar\\calendar-range-component.vue"
+			],
+			[
+				"calendar-range-popup",
+				"[Front] Vueコンポーネント\\calendar\\calendar-range-popup.vue"
+			],
+			[
+				"date-",
+				"[Front] Vueコンポーネント\\form\\input-datetime-range.vue"
+			],
+			[
+				"person.php",
+				"[Back] DBクラス\\person.php"
+			],
+			[
+				"exporter",
+				"[Back] モデル\\csv\\exporter\\mie.php"
+			],
+			[
+				"research/edi",
+				"[Front] 一般画面\\page\\person\\research\\edit.vue"
+			],
+			[
+				"risk-a",
+				"[Front] 一般画面\\component\\person\\risk-assessment\\risk-assessment-editor.vue"
+			],
+			[
+				"filtered-icon",
+				"[Front] Vueコンポーネント\\mark\\filtered-icon.vue"
+			],
+			[
+				"abuse-case-data-start-popup",
+				"[Front] 一般画面\\component\\person\\abuse_case\\abuse-case-data-start-popup.vue"
+			],
+			[
+				"list.",
+				"[Front] 一般画面\\page\\person\\history\\list.component.vue"
+			],
+			[
+				"risk-asse",
+				"[Front] 一般画面\\component\\person\\risk-assessment\\risk-assessment-editor.vue"
+			],
+			[
+				"notification/in",
+				"[Front] 一般画面\\page\\notification\\index.vue"
+			],
+			[
+				"import/mie",
+				"[Back] モデル\\csv\\importer\\mie.php"
+			],
+			[
+				"export/mie",
+				"[Back] モデル\\csv\\exporter\\mie.php"
+			],
+			[
+				"index.php",
+				"[Back] main\\classes\\controller\\index.php"
+			],
+			[
+				"bootstrap.php",
+				"[Back] main\\bootstrap.php"
+			],
+			[
+				"entry.js",
+				"[Front] 一般画面\\entry.js"
+			],
+			[
+				"person-edi",
+				"[Front] 一般画面\\component\\person\\person-edit-popup.vue"
+			],
+			[
+				"custom_ta",
+				"[Back] モデル\\custom_table.php"
+			],
+			[
+				"meeting.php",
+				"[Back] DBクラス\\meeting.php"
+			],
+			[
+				"risk_asses",
+				"[Back] DBクラス\\risk_assessment.php"
+			],
+			[
+				"mee",
+				"[Back] DBクラス\\meeting.php"
+			],
+			[
+				"risk_asse",
+				"[Back] DBクラス\\risk_assessment.php"
+			],
+			[
+				"research.ph",
+				"[Back] DBクラス\\research.php"
+			],
+			[
+				"normal-popup",
+				"[Front] Vueコンポーネント\\_design\\normal-popup.vue"
+			],
+			[
+				"database",
+				"[Back] モデル\\api\\database.php"
+			],
+			[
+				"abuse",
+				"[Back] API\\abuse_case_api.php"
+			],
+			[
+				"border-button",
+				"[Front] 一般画面\\component\\_design\\button\\border-button.vue"
+			],
+			[
+				"abuse_case_a",
+				"[Back] API\\abuse_case_api.php"
+			],
+			[
+				"abuse_case.php",
+				"[Back] DBクラス\\abuse_case.php"
+			],
+			[
+				"abuse_case",
+				"[Back] API\\abuse_case_api.php"
+			],
+			[
+				"history/inde",
+				"[Front] 一般画面\\page\\person\\history\\index.vue"
+			],
+			[
+				"export_a",
+				"[Back] API\\admin\\export_api.php"
+			],
+			[
+				"faq_a",
+				"[Back] API\\faq_api.php"
+			],
+			[
+				"faq-status-label",
+				"[Front] 一般画面\\page\\faq\\faq-status-label.component.vue"
+			],
+			[
+				"faq.php",
+				"[Back] DBクラス\\faq.php"
+			],
+			[
+				"faq_pic",
+				"[Back] DBクラス\\faq_picture.php"
+			],
+			[
+				"input-sear",
+				"[Front] Vueコンポーネント\\form\\input-search.vue"
+			],
+			[
+				"faq_pi",
+				"[Back] DBクラス\\faq_picture.php"
+			],
+			[
+				"cross-mark",
+				"[Front] Vueコンポーネント\\mark\\cross-mark.vue"
+			],
+			[
+				"input-se",
+				"[Front] Vueコンポーネント\\form\\input-search.vue"
+			],
+			[
+				"triangle",
+				"[Front] Vueコンポーネント\\mark\\triangle.vue"
+			],
+			[
+				"cons",
+				"[Front] JSモデル\\constants.json"
+			],
+			[
+				"consta",
+				"[Front] JSモデル\\constants.js"
+			],
+			[
+				"text-",
+				"[Front] 一般画面\\component\\_design\\text-ellipsis.vue"
+			],
+			[
+				"constants",
+				"[Back] 設定\\constants.php"
+			],
+			[
+				"black-button",
+				"[Front] 一般画面\\component\\_design\\button\\black-button.vue"
+			],
+			[
+				"bootstrap",
+				"[Front] 共通SCSS\\_bootstrap.scss"
+			],
+			[
+				"picture_a",
+				"[Back] API\\picture_api.php"
+			],
+			[
+				"api.php",
+				"[Back] main\\classes\\controller\\api.php"
+			],
+			[
+				"picture.php",
+				"[Back] DBクラス\\picture.php"
+			],
+			[
+				"file",
+				"[Back] ライブラリ\\util\\file_utils.php"
+			],
+			[
+				"utils.php",
+				"[Back] ライブラリ\\util\\image_utils.php"
+			],
+			[
+				"person_a",
+				"[Back] API\\person_api.php"
+			],
+			[
+				"user-na",
+				"[Front] 一般画面\\component\\user\\user-name.vue"
+			],
+			[
+				"async",
+				"[Front] JSモデル\\async-manager.js"
+			],
+			[
+				"form-ale",
+				"[Front] Vueコンポーネント\\form-alert.vue"
+			],
+			[
+				"alert",
+				"[Front] Vueコンポーネント\\form-alert.vue"
+			],
+			[
+				"loading-",
+				"[Front] Vueコンポーネント\\loading-div.vue"
+			],
+			[
+				"normal-pop",
+				"[Front] ログイン画面\\component\\normal-popup.vue"
+			],
+			[
+				"async-ma",
+				"[Front] JSモデル\\async-manager.js"
+			],
+			[
+				"faq-edi",
+				"[Front] 一般画面\\page\\faq\\faq-edit-popup.component.vue"
+			],
+			[
+				"input-search",
+				"[Front] Vueコンポーネント\\form\\input-search.vue"
+			],
+			[
+				"loading-div",
+				"[Front] Vueコンポーネント\\loading-div.vue"
+			],
+			[
+				"user.php",
+				"[Back] DBクラス\\user.php"
+			],
+			[
+				"picture_gro",
+				"[Back] DBクラス\\picture_group.php"
+			],
+			[
+				"person.",
+				"[Back] DBクラス\\person.php"
+			],
+			[
+				"faq",
+				"[Back] DBクラス\\faq.php"
+			],
+			[
+				"picture-image",
+				"[Front] 一般画面\\component\\picture\\picture-image.vue"
+			],
+			[
+				"picture-edit-popup",
+				"[Front] 一般画面\\component\\picture\\picture-edit-popup.vue"
+			],
+			[
+				"bootstrap.scss",
+				"[Front] 共通SCSS\\_bootstrap.scss"
+			],
+			[
+				"input-textarea",
+				"[Front] Vueコンポーネント\\form\\input-textarea.vue"
+			],
+			[
+				"reset",
+				"[Front] 共通SCSS\\_reset.scss"
+			],
+			[
+				"abuse-ca",
+				"[Front] 一般画面\\component\\person\\abuse_case\\abuse-case-edit-popup.vue"
+			],
+			[
+				"black-bu",
+				"[Front] 一般画面\\component\\_design\\button\\black-button.vue"
+			],
+			[
+				"input-",
+				"[Front] Vueコンポーネント\\form\\input-text.vue"
+			],
+			[
+				"db_exp",
+				"[Back] DB定義\\db_export.php"
+			],
+			[
+				"import",
+				"[Back] DB定義\\db_import.php"
+			],
+			[
+				"picture-print",
+				"[Front] 一般画面\\component\\picture\\picture-print-popup.vue"
+			],
+			[
+				"importer/mie\t",
+				"[Back] モデル\\csv\\importer\\mie.php"
+			],
+			[
+				"research-pop",
+				"[Front] 一般画面\\component\\person\\research\\research-view-popup.vue"
+			],
+			[
+				"table-type-label",
+				"[Front] 一般画面\\component\\person\\table-type-label.vue"
+			],
+			[
+				"timeline",
+				"[Front] 一般画面\\page\\person\\history\\timeline.component.vue"
+			],
+			[
+				"history.",
+				"[Front] 一般画面\\page\\family\\history.vue"
+			],
+			[
+				"input-text",
+				"[Front] Vueコンポーネント\\form\\input-text.vue"
+			],
+			[
+				"uti",
+				"[Front] JSモデル\\util.js"
+			],
+			[
+				"print-person-basic-preview-popup",
+				"[Front] 一般画面\\component\\person\\print\\print-person-basic-preview-popup.vue"
+			],
+			[
+				"default-",
+				"[Front] JSモデル\\default-print-settings.js"
+			],
+			[
+				"basic",
+				"[Front] 一般画面\\component\\person\\print\\print-person-basic-setting-popup.vue"
+			],
+			[
+				"risk_assessment",
+				"[Back] DBクラス\\risk_assessment.php"
+			],
+			[
+				"research.php",
+				"[Back] DBクラス\\research.php"
+			],
+			[
+				"noprint",
+				"[Front] 一般画面\\page\\list\\noprint.vue"
+			],
+			[
+				"print-preview",
+				"[Front] 一般画面\\component\\person\\print\\print-person-basic-preview-popup.vue"
+			],
+			[
+				"simple-pager-button",
+				"[Front] Vueコンポーネント\\simple-pager-button.vue"
+			],
+			[
+				"builder.",
+				"[Back] モデル\\csv\\builder.php"
+			],
+			[
+				"export/ri",
+				"[Front] 管理者画面\\page\\csv\\export\\risk_assessment.vue"
+			],
+			[
+				"database.php",
+				"[Back] モデル\\api\\database.php"
+			],
+			[
+				"person-edit-popup",
+				"[Front] 一般画面\\component\\person\\person-edit-popup.vue"
+			],
+			[
+				"abuse_",
+				"[Back] API\\abuse_case_api.php"
+			],
+			[
+				"export.vue",
+				"[Front] 一般画面\\page\\list\\nolink\\export.vue"
+			],
+			[
+				"research_a",
+				"[Back] API\\research_api.php"
+			],
+			[
+				"risk-asses",
+				"[Front] 一般画面\\component\\person\\risk-assessment\\risk-assessment-editor.vue"
+			],
+			[
+				"research/edit",
+				"[Front] 一般画面\\page\\person\\research\\edit.vue"
+			],
+			[
+				"abuse-case-",
+				"[Front] 一般画面\\component\\history\\abuse-case-list-item.vue"
+			],
+			[
+				"risk_assessment_a",
+				"[Back] API\\risk_assessment_api.php"
+			],
+			[
+				"input-datetime",
+				"[Front] Vueコンポーネント\\form\\input-datetime.vue"
+			],
+			[
+				"risk-as",
+				"[Front] 一般画面\\component\\person\\risk-assessment\\risk-assessment-editor.vue"
+			],
+			[
+				"db.php",
+				"[Back] 設定\\docker\\db.php"
+			],
+			[
+				"db_impo",
+				"[Back] DB定義\\db_import.php"
+			],
+			[
+				"db.ddl",
+				"[Back] DB定義\\db.ddl"
+			],
+			[
+				"export",
+				"[Back] DB定義\\db_export.php"
+			],
+			[
+				"id_con",
+				"[Back] API\\id_converter_api.php"
+			],
+			[
+				"id_conver",
+				"[Back] DBクラス\\id_converter.php"
+			],
+			[
+				"link_error",
+				"[Back] DBクラス\\link_error_log.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 592.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 294.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
