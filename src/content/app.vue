@@ -138,6 +138,7 @@ export default {
 			a.click();
 		},
 		onClickText(text) {
+			if(this.mode != 1) return;
 			this.toActive(text);
 		},
 		addText(event) {
@@ -202,7 +203,7 @@ export default {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .app {
 	position: absolute;
 	left: 0;
@@ -224,7 +225,8 @@ export default {
 
 .text {
 	position: absolute;
-	font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+	// font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+	font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
 
 	pre {
 		border: 1px transparent solid;

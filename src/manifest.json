@@ -1,6 +1,6 @@
 {
 	"name": "bilibili漫画 翻訳表示ツール",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"manifest_version": 2,
 	"description": "bilibili漫画に翻訳テキストを表示・編集できるようになる拡張機能です",
 	"content_scripts": [

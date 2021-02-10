@@ -28,10 +28,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.12.13",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/vue-fontawesome": "^2.0.2",
-    "@babel/core": "^7.12.13",
     "@storybook/addon-actions": "^6.1.17",
     "@storybook/addon-links": "^6.1.17",
     "@storybook/addons": "^6.1.17",
@@ -46,6 +46,7 @@
     "rimraf": "^3.0.2",
     "sass-loader": "^10.1.1",
     "vue": "^2.6.12",
-    "vue-template-compiler": "^2.6.12"
+    "vue-template-compiler": "^2.6.12",
+    "webextension-polyfill": "^0.7.0"
   }
 }
