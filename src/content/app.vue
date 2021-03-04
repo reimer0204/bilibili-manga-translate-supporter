@@ -12,7 +12,12 @@
 					color: text.color,
 					fontSize: (Math.pow(1.1, text.fontSize) * width / 100) + 'px',
 				}">
-					<pre>{{ text.text }}</pre>
+					<pre :style="{
+						paddingTop:    (((text.vp || 0) + 0.5) * width / 100) + 'px',
+						paddingBottom: (((text.vp || 0) + 0.5) * width / 100) + 'px',
+						paddingLeft:   (((text.hp || 0) + 0.5) * width / 100) + 'px',
+						paddingRight:  (((text.hp || 0) + 0.5) * width / 100) + 'px',
+					}">{{ text.text }}</pre>
 					<textarea v-model="text.text" v-if="text.active" ref="textarea" />
 					<div class="text-controller" v-if="text.active">
 						<button @mousedown="onStartDrag(text, $event)"><font-awesome-icon icon="arrows-alt" /></button>
@@ -21,6 +26,39 @@
 						<button @click.stop="text.vertical = !text.vertical"><font-awesome-icon :icon="text.vertical ? 'arrows-alt-h' : 'arrows-alt-v'" /></button>
 						<label><font-awesome-icon icon="fill-drip" /><input type="color" v-model="text.bgColor"></label>
 						<label><font-awesome-icon icon="font" /><input type="color" v-model="text.color"></label>
+
+						<button @click="$set(text, 'vp', Math.max((text.vp || 0) - 0.5, 0))">
+							<svg width="18" height="18" viewBox="0 0 18 18">
+								<rect x="3" y="6" width="12" height="6" rx="2" ry="2" stroke-width="2" stroke="currentColor" fill="transparent" />
+								<path d="M8, 0 L10, 0 L10, 2 L11.5, 2 L9, 5.5 L6.5, 2 L8, 2 z" stroke="transparent" fill="currentColor" />
+								<path d="M8,18 L10,18 L10,16 L11.5,16 L9,12.5 L6.5,16 L8,16 z" stroke="transparent" fill="currentColor" />
+							</svg>
+						</button>
+
+						<button @click="$set(text, 'vp', (text.vp || 0) + 0.5)">
+							<svg width="18" height="18" viewBox="0 0 18 18">
+								<rect x="3" y="6" width="12" height="6" rx="2" ry="2" stroke-width="2" stroke="currentColor" fill="transparent" />
+								<path d="M8, 5.5 L10, 5.5 L10, 3 L11.5, 3 L9, 0 L6.5, 3 L8, 3 z" stroke="transparent" fill="currentColor" />
+								<path d="M8,12.5 L10,12.5 L10,15 L11.5,15 L9,18 L6.5,15 L8,15 z" stroke="transparent" fill="currentColor" />
+							</svg>
+						</button>
+
+						<button @click="$set(text, 'hp', Math.max((text.hp || 0) - 0.5, 0))">
+							<svg width="18" height="18" viewBox="0 0 18 18">
+								<rect x="6" y="3" width="6" height="12" rx="2" ry="2" stroke-width="2" stroke="currentColor" fill="transparent" />
+								<path d="M 0,8 L 0,10 L 2,10 L 2,11.5 L 5.5,9 L 2,6.5 L 2,8 z" stroke="transparent" fill="currentColor" />
+								<path d="M18,8 L18,10 L16,10 L16,11.5 L12.5,9 L16,6.5 L16,8 z" stroke="transparent" fill="currentColor" />
+							</svg>
+						</button>
+
+						<button @click="$set(text, 'hp', (text.hp || 0) + 0.5)">
+							<svg width="18" height="18" viewBox="0 0 18 18">
+								<rect x="6" y="3" width="6" height="12" rx="2" ry="2" stroke-width="2" stroke="currentColor" fill="transparent" />
+								<path d="M 5.5,8 L 5.5,10 L 3,10 L 3,11.5 L 0,9 L 3,6.5 L 3,8 z" stroke="transparent" fill="currentColor" />
+								<path d="M12.5,8 L12.5,10 L15,10 L15,11.5 L18,9 L15,6.5 L15,8 z" stroke="transparent" fill="currentColor" />
+							</svg>
+						</button>
+
 						<button @click.stop="deleteText(text)"><font-awesome-icon icon="times" /></button>
 					</div>
 				</div>
@@ -66,7 +104,7 @@ export default {
 			return {
 				fontSize: 13,
 				vertical: false,
-				bgColor: '#FFFFFF',
+				bgColor: '#FFF',
 				color: '#000',
 			}
 		},
@@ -148,6 +186,43 @@ export default {
 				this.unselectText();
 				return;
 			}
+
+			let bgColor = this.defaultInfo.bgColor;
+			let color = this.defaultInfo.color;
+			let parent = this.$el.parentElement;
+			if(parent) {
+				let parentPosition = parent.getBoundingClientRect();
+
+				for(let canvas of parent.querySelectorAll('canvas')) {
+					let canvasPosition = canvas.getBoundingClientRect();
+					let canvasOffset = {
+						x: canvasPosition.x - parentPosition.x,
+						y: canvasPosition.y - parentPosition.y,
+					}
+
+					if(canvasOffset.x <= event.offsetX && event.offsetX < canvasOffset.x + canvasPosition.width &&
+							canvasOffset.y <= event.offsetY && event.offsetY < canvasOffset.y + canvasPosition.height) {
+						let context = canvas.getContext('2d');
+						let imageData = context.getImageData(
+							(event.offsetX - canvasOffset.x) * canvas.width  / canvasPosition.width, (event.offsetY - canvasOffset.y) * canvas.height / canvasPosition.height, 1, 1,
+						);
+
+						if(imageData.data.length) {
+							bgColor = '#' + 
+								('0' + Number(imageData.data[0]).toString(16)).slice(-2) + 
+								('0' + Number(imageData.data[1]).toString(16)).slice(-2) + 
+								('0' + Number(imageData.data[2]).toString(16)).slice(-2);
+							let brightness = imageData.data[0] * 0.299 + imageData.data[1] * 0.587 + imageData.data[2] * 0.114;
+							if(brightness < 255 / 2) {
+								color = '#FFF';
+							} else {
+								color = '#000';
+							}
+						}
+					}
+				}
+			}
+
 			let areaSize = event.currentTarget.getBoundingClientRect();
 			this.textList.push({
 				x: event.offsetX / areaSize.width,
@@ -155,8 +230,8 @@ export default {
 				text: "",
 				fontSize: this.defaultInfo.fontSize,
 				vertical: this.defaultInfo.vertical,
-				bgColor: this.defaultInfo.bgColor,
-				color: this.defaultInfo.color,
+				bgColor: bgColor,
+				color: color,
 			});
 			this.toActive(this.textList[this.textList.length - 1]);
 			event.preventDefault();
@@ -191,8 +266,8 @@ export default {
 		},
 		onMoveDrag(event) {
 			if(this.dragInfo) {
-				this.dragInfo.text.x = this.dragInfo.start.textX + (event.pageX - this.dragInfo.start.mouseX) / this.width;
-				this.dragInfo.text.y = this.dragInfo.start.textY + (event.pageY - this.dragInfo.start.mouseY) / this.height;
+				this.dragInfo.text.x = Math.max(0, Math.min(0.995, this.dragInfo.start.textX + (event.pageX - this.dragInfo.start.mouseX) / this.width));
+				this.dragInfo.text.y = Math.max(0, Math.min(0.995, this.dragInfo.start.textY + (event.pageY - this.dragInfo.start.mouseY) / this.height));
 			}
 		},
 		onEndDrag(event) {
@@ -230,7 +305,6 @@ export default {
 
 	pre {
 		border: 1px transparent solid;
-		padding: 3px;
 		margin: 0;
 	}
 
@@ -257,7 +331,7 @@ export default {
 		width: 250px;
 		height: 100px;
 		left: 0;
-		bottom: 100%;
+		bottom: calc(100% + 20px);
 
 		padding: 3px;
 		font-size: 16px;
@@ -275,7 +349,7 @@ export default {
 		display: flex;
 		flex-direction: row;
 		position: absolute;
-		top: 100%;
+		bottom: 100%;
 		left: 0;
 
 		button, label {

@@ -11,6 +11,6 @@ export default {
 
 export const ToStorybook = () => ({
   components: { App },
-  template: '<app style="width: 50%; height: 1000px;" />',
+  template: '<div style="position: relative;"><app /><img src="1.jpg" style="width: 500px; display: block;" /><img src="2.jpg" style="display: block; width: 500px;" /></div>',
 });
 ToStorybook.story = { name: 'app', };

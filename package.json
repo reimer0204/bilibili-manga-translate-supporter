@@ -4,7 +4,7 @@
   "description": "",
   "main": "content.js",
   "scripts": {
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 -s public",
     "compile:content": "vue-cli-service build --no-clean src/content/entry.js",
     "compile": "run-s compile:content",
     "copy:manifest": "cpx src/manifest.json dist/",
