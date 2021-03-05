@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import App from './app.vue';
 global.Vue = Vue;
+global.BMTS = {
+	originalCanvasToDataURL: HTMLCanvasElement.prototype.toDataURL,
+};
 
 let f = () => {
 	let imageList = document.querySelector('.image-list');

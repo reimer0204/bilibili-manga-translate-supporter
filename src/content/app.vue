@@ -1,6 +1,6 @@
 <template>
 	<div class="app" ref="app">
-		<div class="main" @click="addText($event)">
+		<div class="main" @click="addText($event)" @mouseup="onEndDrag">
 			<template v-if="mode != 2">
 				<div class="text" v-for="text in textList" @click.stop="onClickText(text)" :class="{
 					vertical: text.vertical,
@@ -8,26 +8,41 @@
 				}" :style="{
 					left: (text.x * 100) + '%',
 					top: (text.y * 100) + '%',
-					backgroundColor: text.bgColor,
 					color: text.color,
 					fontSize: (Math.pow(1.1, text.fontSize) * width / 100) + 'px',
-				}">
-					<pre :style="{
-						paddingTop:    (((text.vp || 0) + 0.5) * width / 100) + 'px',
-						paddingBottom: (((text.vp || 0) + 0.5) * width / 100) + 'px',
-						paddingLeft:   (((text.hp || 0) + 0.5) * width / 100) + 'px',
-						paddingRight:  (((text.hp || 0) + 0.5) * width / 100) + 'px',
-					}">{{ text.text }}</pre>
-					<textarea v-model="text.text" v-if="text.active" ref="textarea" />
-					<div class="text-controller" v-if="text.active">
-						<button @mousedown="onStartDrag(text, $event)"><font-awesome-icon icon="arrows-alt" /></button>
-						<button @click="text.fontSize = Math.max(Math.round(text.fontSize - 1),   0)"><font-awesome-icon icon="search-minus" /></button>
-						<button @click="text.fontSize = Math.min(Math.round(text.fontSize + 1), 100)"><font-awesome-icon icon="search-plus" /></button>
-						<button @click.stop="text.vertical = !text.vertical"><font-awesome-icon :icon="text.vertical ? 'arrows-alt-h' : 'arrows-alt-v'" /></button>
-						<label><font-awesome-icon icon="fill-drip" /><input type="color" v-model="text.bgColor"></label>
-						<label><font-awesome-icon icon="font" /><input type="color" v-model="text.color"></label>
 
-						<button @click="$set(text, 'vp', Math.max((text.vp || 0) - 0.5, 0))">
+				}">
+					<template v-if="text.mode == 'fill'">
+						<div class="fill" :style="{
+							width:  Math.max(width * 0.01, ((text.width  || 0) * width )) + 'px',
+							height: Math.max(width * 0.01, ((text.height || 0) * height)) + 'px',
+							backgroundColor: text.bgColor,
+							transform: text.rotate ? 'rotate(' + text.rotate + 'deg)' : undefined,
+						}"></div>
+					</template>
+					<template v-else>
+						<pre :style="{
+							paddingTop:    (((text.vp || 0) + 0.5) * width / 100) + 'px',
+							paddingBottom: (((text.vp || 0) + 0.5) * width / 100) + 'px',
+							paddingLeft:   (((text.hp || 0) + 0.5) * width / 100) + 'px',
+							paddingRight:  (((text.hp || 0) + 0.5) * width / 100) + 'px',
+							backgroundColor: text.bgColor,
+							transform: text.rotate ? 'rotate(' + text.rotate + 'deg)' : undefined,
+						}">{{ text.text }}</pre>
+					</template>
+
+					<textarea v-model="text.text" v-if="text.active" ref="textarea" :style="{
+						left: Math.min(width - 250 - text.x * width, 0) + 'px',
+					}" />
+					<div class="text-controller" v-if="text.active">
+						<button @mousedown.stop="onStartDrag(text, $event, 'move')"><font-awesome-icon icon="arrows-alt" /></button>
+						<button @click="text.fontSize = Math.max(Math.round(text.fontSize - 1),   0)" :disabled="text.mode != null"><font-awesome-icon icon="search-minus" /></button>
+						<button @click="text.fontSize = Math.min(Math.round(text.fontSize + 1), 100)" :disabled="text.mode != null"><font-awesome-icon icon="search-plus" /></button>
+						<button @click.stop="text.vertical = !text.vertical" :disabled="text.mode != null"><font-awesome-icon :icon="text.vertical ? 'arrows-alt-h' : 'arrows-alt-v'" /></button>
+						<label><font-awesome-icon icon="fill-drip" /><input type="color" v-model="text.bgColor"></label>
+						<label :class="{disabled: text.mode != null}"><font-awesome-icon icon="font" /><input type="color" v-model="text.color" :disabled="text.mode != null"></label>
+
+						<button @click="$set(text, 'vp', Math.max((text.vp || 0) - 0.5, 0))" :disabled="text.mode != null">
 							<svg width="18" height="18" viewBox="0 0 18 18">
 								<rect x="3" y="6" width="12" height="6" rx="2" ry="2" stroke-width="2" stroke="currentColor" fill="transparent" />
 								<path d="M8, 0 L10, 0 L10, 2 L11.5, 2 L9, 5.5 L6.5, 2 L8, 2 z" stroke="transparent" fill="currentColor" />
@@ -35,7 +50,7 @@
 							</svg>
 						</button>
 
-						<button @click="$set(text, 'vp', (text.vp || 0) + 0.5)">
+						<button @click="$set(text, 'vp', (text.vp || 0) + 0.5)" :disabled="text.mode != null">
 							<svg width="18" height="18" viewBox="0 0 18 18">
 								<rect x="3" y="6" width="12" height="6" rx="2" ry="2" stroke-width="2" stroke="currentColor" fill="transparent" />
 								<path d="M8, 5.5 L10, 5.5 L10, 3 L11.5, 3 L9, 0 L6.5, 3 L8, 3 z" stroke="transparent" fill="currentColor" />
@@ -43,7 +58,7 @@
 							</svg>
 						</button>
 
-						<button @click="$set(text, 'hp', Math.max((text.hp || 0) - 0.5, 0))">
+						<button @click="$set(text, 'hp', Math.max((text.hp || 0) - 0.5, 0))" :disabled="text.mode != null">
 							<svg width="18" height="18" viewBox="0 0 18 18">
 								<rect x="6" y="3" width="6" height="12" rx="2" ry="2" stroke-width="2" stroke="currentColor" fill="transparent" />
 								<path d="M 0,8 L 0,10 L 2,10 L 2,11.5 L 5.5,9 L 2,6.5 L 2,8 z" stroke="transparent" fill="currentColor" />
@@ -51,7 +66,7 @@
 							</svg>
 						</button>
 
-						<button @click="$set(text, 'hp', (text.hp || 0) + 0.5)">
+						<button @click="$set(text, 'hp', (text.hp || 0) + 0.5)" :disabled="text.mode != null">
 							<svg width="18" height="18" viewBox="0 0 18 18">
 								<rect x="6" y="3" width="6" height="12" rx="2" ry="2" stroke-width="2" stroke="currentColor" fill="transparent" />
 								<path d="M 5.5,8 L 5.5,10 L 3,10 L 3,11.5 L 0,9 L 3,6.5 L 3,8 z" stroke="transparent" fill="currentColor" />
@@ -59,26 +74,38 @@
 							</svg>
 						</button>
 
+						<button @click="$set(text, 'rotate', ((text.rotate || 0) +  15) % 360)"><font-awesome-icon icon="undo" /></button>
+						<button @click="$set(text, 'rotate', ((text.rotate || 0) + 345) % 360)"><font-awesome-icon icon="undo" style="transform: scale(-1, 1)" /></button>
+
+						<button @click="$set(text, 'mode', text.mode != 'fill' ? 'fill' : null)">
+							<font-awesome-icon v-if="text.mode == 'fill'" icon="edit" />
+							<font-awesome-icon v-else icon="paint-roller" />
+						</button>
+
 						<button @click.stop="deleteText(text)"><font-awesome-icon icon="times" /></button>
 					</div>
+
+					<div class="fill-handler" v-if="text.mode == 'fill' && text.active" @mousedown.stop="onStartDrag(text, $event, 'fill')"><font-awesome-icon icon="expand-arrows-alt" /></div>
 				</div>
 			</template>
 		</div>
 		<div class="controller">
+			<button @click="translate">機械翻訳</button>
 			<label><input type="file" @change="load">ファイル読込</label>
 			<button @click="save" v-if="mode == 1">ファイル出力</button>
 			<button class="mode" @click="mode = (mode + 1) % 3">{{ modeText }}</button>
 		</div>
+		<div class="translating-cover" v-if="translating">翻訳中...</div>
 	</div>
 </template>
 
 <script>
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faArrowsAlt, faArrowsAltV, faArrowsAltH, faTimes, faFillDrip, faFont, faSearchMinus, faSearchPlus } from '@fortawesome/free-solid-svg-icons'
+import { faArrowsAlt, faArrowsAltV, faArrowsAltH, faTimes, faFillDrip, faFont, faSearchMinus, faSearchPlus, faUndo, faEdit, faPaintRoller, faExpandArrowsAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faArrowsAlt, faArrowsAltV, faArrowsAltH, faTimes, faFillDrip, faFont, faSearchMinus, faSearchPlus)
+library.add(faArrowsAlt, faArrowsAltV, faArrowsAltH, faTimes, faFillDrip, faFont, faSearchMinus, faSearchPlus, faUndo, faEdit, faPaintRoller, faExpandArrowsAlt)
 
 export default {
 	components: { FontAwesomeIcon },
@@ -90,6 +117,7 @@ export default {
 			height: 1,
 			dragInfo: null,
 			lastActive: null,
+			translating: false,
 		}
 	},
 	computed: {
@@ -208,9 +236,9 @@ export default {
 						);
 
 						if(imageData.data.length) {
-							bgColor = '#' + 
-								('0' + Number(imageData.data[0]).toString(16)).slice(-2) + 
-								('0' + Number(imageData.data[1]).toString(16)).slice(-2) + 
+							bgColor = '#' +
+								('0' + Number(imageData.data[0]).toString(16)).slice(-2) +
+								('0' + Number(imageData.data[1]).toString(16)).slice(-2) +
 								('0' + Number(imageData.data[2]).toString(16)).slice(-2);
 							let brightness = imageData.data[0] * 0.299 + imageData.data[1] * 0.587 + imageData.data[2] * 0.114;
 							if(brightness < 255 / 2) {
@@ -247,31 +275,106 @@ export default {
 		unselectText(text) {
 			this.textList = this.textList.filter(x => {
 				Vue.set(x, 'active', false);
-				return text === x || x.text.length > 0;
+				return text === x || (x.mode == 'fill' || x.text.length > 0);
 			});
 		},
 		deleteText(text) {
 			this.textList = this.textList.filter(x => x != text);
 		},
-		onStartDrag(text, event) {
+		onStartDrag(text, event, mode) {
 			this.dragInfo = {
 				text: text,
+				mode: mode,
 				start: {
 					textX: text.x,
 					textY: text.y,
 					mouseX: event.pageX,
 					mouseY: event.pageY,
+					width: text.width ?? 0,
+					height: text.height ?? 0,
 				},
 			}
 		},
 		onMoveDrag(event) {
 			if(this.dragInfo) {
-				this.dragInfo.text.x = Math.max(0, Math.min(0.995, this.dragInfo.start.textX + (event.pageX - this.dragInfo.start.mouseX) / this.width));
-				this.dragInfo.text.y = Math.max(0, Math.min(0.995, this.dragInfo.start.textY + (event.pageY - this.dragInfo.start.mouseY) / this.height));
+				if(this.dragInfo.mode == 'move') {
+					this.dragInfo.text.x = Math.max(0, Math.min(0.995, this.dragInfo.start.textX + (event.pageX - this.dragInfo.start.mouseX) / this.width));
+					this.dragInfo.text.y = Math.max(0, Math.min(0.995, this.dragInfo.start.textY + (event.pageY - this.dragInfo.start.mouseY) / this.height));
+				}
+				if(this.dragInfo.mode == 'fill') {
+					Vue.set(this.dragInfo.text, 'width',  Math.max(0, Math.min(0.995, this.dragInfo.start.width  + (event.pageX - this.dragInfo.start.mouseX) / this.width)));
+					Vue.set(this.dragInfo.text, 'height', Math.max(0, Math.min(0.995, this.dragInfo.start.height + (event.pageY - this.dragInfo.start.mouseY) / this.height)));
+				}
 			}
 		},
 		onEndDrag(event) {
+			if(this.dragInfo) {
+				event.stopPropagation();
+				event.preventDefault();
+			}
 			this.dragInfo = null;
+		},
+
+		async translate() {
+			// document.querySelector(".ps-container").scrollTop
+			// canvasが読み込まれていなかったら
+			this.translating = true;
+
+			let container = this.$el.parentElement.parentElement;
+			let originalScrollTop = container.scrollTop;
+
+			try {
+
+				let canvases = document.querySelectorAll(".image-list canvas");
+				let totalHeight = 0;
+				let maxWidth = 0;
+				for(let canvas of canvases) {
+					maxWidth = maxWidth < canvas.width ? canvas.width : maxWidth;
+					totalHeight += canvas.height;
+				}
+				let mergedCanvas = document.createElement("canvas");
+				mergedCanvas.width = maxWidth;
+				mergedCanvas.height = totalHeight;
+				let margedCanvas = mergedCanvas.getContext('2d');
+
+				let height = 0;
+				for(let canvas of canvases) {
+					let context = canvas.getContext('2d');
+
+					let loaded = false;
+					do {
+						let imageData = context.getImageData(0, 0, 1, 1);
+						console.log(imageData.data[0], imageData.data[1], imageData.data[2], imageData.data[3])
+
+						if(imageData.data[3] == 0) {
+							document.querySelector(".ps-container").scrollTop = height;
+							await this.sleep(100)
+						} else {
+							margedCanvas.drawImage(canvas, (maxWidth - canvas.width) / 2, height);
+							loaded = true;
+						}
+					} while(!loaded);
+
+					height += canvas.height;
+				}
+
+				// console.log(BMTS.originalCanvasToDataURL.call(mergedCanvas, "image/png"));
+
+				let link = document.createElement("a");
+				link.href = mergedCanvas.toDataURL("image/jpeg");
+				link.download = "test.jpg";
+				link.click();
+
+			} finally {
+				this.translating = false;
+				container.scrollTop = originalScrollTop;
+			}
+		},
+
+		async sleep(time) {
+			return new Promise(resolve => {
+				setTimeout(resolve, time);
+			})
 		},
 	}
 }
@@ -286,6 +389,7 @@ export default {
 	right: 0;
 	bottom: 0;
 	z-index: 1;
+	overflow: hidden;
 
 }
 
@@ -308,6 +412,10 @@ export default {
 		margin: 0;
 	}
 
+	div.fill {
+		border: 1px transparent solid;
+	}
+
 	pre, textarea {
 		font-size: inherit;
 		font-family: inherit;
@@ -317,21 +425,25 @@ export default {
 		pre {
 			border-color: rgba(0, 0, 0, 0.5);
 		}
+		div.fill {
+			border-color: rgba(0, 0, 0, 0.5);
+		}
 	}
 
 	&.vertical {
 		pre {
 			-ms-writing-mode: tb-rl;
-	  		writing-mode: vertical-rl;
-	  	}
+			writing-mode: vertical-rl;
+		}
 	}
 
 	textarea {
 		position: absolute;
-		width: 250px;
+		width: 240px;
 		height: 100px;
 		left: 0;
-		bottom: calc(100% + 20px);
+		bottom: calc(100% + 40px);
+		box-sizing: border-box;
 
 		padding: 3px;
 		font-size: 16px;
@@ -348,7 +460,9 @@ export default {
 	.text-controller {
 		display: flex;
 		flex-direction: row;
+		flex-wrap: wrap;
 		position: absolute;
+		width: 240px;
 		bottom: 100%;
 		left: 0;
 
@@ -367,6 +481,11 @@ export default {
 			color: #000;
 			text-align: center;
 
+			&:disabled, &.disabled {
+				background-color: #DDD;
+				color: #888;
+			}
+
 			input {
 				position: absolute;
 				width: 18px;
@@ -376,6 +495,25 @@ export default {
 				visibility: hidden;
 			}
 		}
+	}
+
+	.fill-handler {
+		position: absolute;
+		right: -20px;
+		bottom: -20px;
+
+		line-height: 20px;
+		width: 20px;
+		height: 20px;
+		font-size: 14px;
+
+		box-sizing: border-box;
+		display: block;
+		padding: 0;
+		border: 1px #CCC solid;
+		background-color: #FFD;
+		color: #000;
+		text-align: center;
 	}
 }
 
@@ -411,4 +549,23 @@ export default {
 		}
 	}
 }
+
+.translating-cover {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background-color: #333;
+	color: #FFF;
+	font-size: 30px;
+	font-weight: bold;
+
+}
+
 </style>
