@@ -37,6 +37,7 @@
     "@storybook/addons": "^6.1.17",
     "@storybook/vue": "^6.1.17",
     "@vue/cli-service": "^4.5.11",
+    "axios": "^0.21.1",
     "babel-loader": "^8.2.2",
     "babel-preset-vue": "^2.0.2",
     "core-js": "^3.8.3",

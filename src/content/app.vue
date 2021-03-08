@@ -90,20 +90,49 @@
 			</template>
 		</div>
 		<div class="controller">
+			<button @click="isOpenSetting = true">設定</button>
 			<button @click="translate">機械翻訳</button>
 			<label><input type="file" @change="load">ファイル読込</label>
 			<button @click="save" v-if="mode == 1">ファイル出力</button>
 			<button class="mode" @click="mode = (mode + 1) % 3">{{ modeText }}</button>
 		</div>
 		<div class="translating-cover" v-if="translating">翻訳中...</div>
+
+		<div class="setting-cover" v-if="isOpenSetting">
+			<div>
+				<h2>設定</h2>
+
+				<table>
+					<tr>
+						<th>Google API キー</th>
+						<td>
+							<input type="text" v-model="googleApiKey" />
+							<a href="https://sites.google.com/view/bmts-help" target="_blank">Google API キーの取得方法</a>
+						</td>
+					</tr>
+					<tr>
+						<th>翻訳方法</th>
+						<td>
+							<select v-model="translateModel">
+								<option value="nmt">ニューラル機械翻訳</option>
+								<option value="base">ルールベース機械翻訳</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+
+				<button @click="isOpenSetting = false">閉じる</button>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faArrowsAlt, faArrowsAltV, faArrowsAltH, faTimes, faFillDrip, faFont, faSearchMinus, faSearchPlus, faUndo, faEdit, faPaintRoller, faExpandArrowsAlt } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faArrowsAlt, faArrowsAltV, faArrowsAltH, faTimes, faFillDrip, faFont, faSearchMinus, faSearchPlus, faUndo, faEdit, faPaintRoller, faExpandArrowsAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import axios from 'axios';
 
 library.add(faArrowsAlt, faArrowsAltV, faArrowsAltH, faTimes, faFillDrip, faFont, faSearchMinus, faSearchPlus, faUndo, faEdit, faPaintRoller, faExpandArrowsAlt)
 
@@ -118,6 +147,11 @@ export default {
 			dragInfo: null,
 			lastActive: null,
 			translating: false,
+
+			isOpenSetting: false,
+
+			googleApiKey: '',
+			translateModel: 'nmt',
 		}
 	},
 	computed: {
@@ -142,7 +176,17 @@ export default {
 			if(newValue != 1) {
 				this.unselectText();
 			}
-		}
+		},
+		googleApiKey() {
+			if(chrome && chrome.storage && chrome.storage.local && chrome.storage.local.set) {
+				chrome.storage.local.set({'googleApiKey': this.googleApiKey});
+			}
+		},
+		translateModel() {
+			if(chrome && chrome.storage && chrome.storage.local && chrome.storage.local.set) {
+				chrome.storage.local.set({'translateModel': this.translateModel});
+			}
+		},
 	},
 	mounted() {
 		let beforeLocationHref = null;
@@ -159,6 +203,13 @@ export default {
 		}, 10);
 		window.addEventListener('mousemove', this.onMoveDrag);
 		window.addEventListener('mouseup', this.onEndDrag);
+
+		if(chrome && chrome.storage && chrome.storage.local && chrome.storage.local.get) {
+			chrome.storage.local.get(['googleApiKey', 'translateModel'], items => {
+				this.googleApiKey = items.googleApiKey;
+				this.translateModel = items.translateModel || 'nmt';
+			})
+		}
 	},
 	beforeDestroy() {
 		clearInterval(this.intervalHandler);
@@ -290,8 +341,8 @@ export default {
 					textY: text.y,
 					mouseX: event.pageX,
 					mouseY: event.pageY,
-					width: text.width ?? 0,
-					height: text.height ?? 0,
+					width: text.width || 0,
+					height: text.height || 0,
 				},
 			}
 		},
@@ -316,9 +367,15 @@ export default {
 		},
 
 		async translate() {
-			// document.querySelector(".ps-container").scrollTop
-			// canvasが読み込まれていなかったら
+
+			if(this.googleApiKey == null || this.googleApiKey.length == 0) {
+				alert("設定からGoogle API キーの設定を行ってください。");
+				return;
+			}
+
 			this.translating = true;
+
+			await Vue.nextTick();
 
 			let container = this.$el.parentElement.parentElement;
 			let originalScrollTop = container.scrollTop;
@@ -332,43 +389,185 @@ export default {
 					maxWidth = maxWidth < canvas.width ? canvas.width : maxWidth;
 					totalHeight += canvas.height;
 				}
-				let mergedCanvas = document.createElement("canvas");
-				mergedCanvas.width = maxWidth;
-				mergedCanvas.height = totalHeight;
-				let margedCanvas = mergedCanvas.getContext('2d');
 
-				let height = 0;
+				let mergedCanvas = null;
+				let mergedContext = null;
+				let heightOffset = 0;
+				let canvasIndexOffset = 0;
+				let ocrDatas = [];
+				let i = 0;
 				for(let canvas of canvases) {
-					let context = canvas.getContext('2d');
 
-					let loaded = false;
-					do {
-						let imageData = context.getImageData(0, 0, 1, 1);
-						console.log(imageData.data[0], imageData.data[1], imageData.data[2], imageData.data[3])
-
-						if(imageData.data[3] == 0) {
-							document.querySelector(".ps-container").scrollTop = height;
-							await this.sleep(100)
-						} else {
-							margedCanvas.drawImage(canvas, (maxWidth - canvas.width) / 2, height);
-							loaded = true;
+					// 初回、高さ30000以上、base64が9MB以上なら新しいcanvas
+					if(mergedCanvas == null || mergedCanvas.height + canvas.height > 30000 || mergedCanvas.toDataURL("image/jpeg").length > 9 * 1024 * 1024) {
+						if(mergedCanvas != null) {
+							ocrDatas.push({ base64: mergedCanvas.toDataURL("image/jpeg"), heightOffset: heightOffset, context: mergedContext })
+							heightOffset += mergedCanvas.height;
 						}
-					} while(!loaded);
+						canvasIndexOffset = i;
+						mergedCanvas = document.createElement("canvas");
+						mergedContext = mergedCanvas.getContext('2d');
+						mergedCanvas.width = maxWidth;
+						mergedCanvas.height = 0;
+					}
+					mergedCanvas.height += canvas.height;
 
-					height += canvas.height;
+					let height = 0;
+					for(let j = canvasIndexOffset; j <= i; j++) {
+						let context = canvases[j].getContext('2d');
+						let loaded = false;
+						do {
+							// canvasの左上のドットを取得する
+							let imageData = context.getImageData(0, 0, 1, 1);
+							if(imageData.data[3] == 0) {
+								// 透明ならそこにスクロールしてしばらく待つ
+								document.querySelector(".ps-container").scrollTop = heightOffset + height;
+								await this.sleep(100)
+							} else {
+								mergedContext.drawImage(canvases[j], (maxWidth - canvas.width) / 2, height);
+								loaded = true;
+							}
+						} while(!loaded);
+
+						height += canvases[j].height;
+					}
+					i++;
 				}
 
-				// console.log(BMTS.originalCanvasToDataURL.call(mergedCanvas, "image/png"));
+				// canvas結合結果確認用
+				// let link = document.createElement("a");
+				// link.href = mergedCanvas.toDataURL("image/jpeg");
+				// link.download = "test.jpg";
+				// link.click();
+				// return;
 
-				let link = document.createElement("a");
-				link.href = mergedCanvas.toDataURL("image/jpeg");
-				link.download = "test.jpg";
-				link.click();
+				if(mergedCanvas != null) {
+					ocrDatas.push({ base64: mergedCanvas.toDataURL("image/jpeg"), heightOffset: heightOffset, context: mergedContext })
+				}
+
+				let translateData = [];
+				await Promise.all(ocrDatas.map(async (ocrData) => {
+					let translateResult = await this.translateBase64(ocrData.base64);
+
+					for(let data of translateResult) {
+
+						let x = data.boundingBox.x1 / maxWidth;
+						let y = (data.boundingBox.y1 + ocrData.heightOffset) / totalHeight;
+						let width = (data.boundingBox.x2 - data.boundingBox.x1) / maxWidth;
+						let height = (data.boundingBox.y2 - data.boundingBox.y1) / totalHeight;
+
+						let bgColor = '#FFF';
+						let color = '#000';
+						let imageData = ocrData.context.getImageData(Math.max(data.boundingBox.x1 - 1, 0), Math.max(data.boundingBox.y1 - 1, 0), 1, 1);
+						if(imageData.data.length) {
+							bgColor = '#' +
+								('0' + Number(imageData.data[0]).toString(16)).slice(-2) +
+								('0' + Number(imageData.data[1]).toString(16)).slice(-2) +
+								('0' + Number(imageData.data[2]).toString(16)).slice(-2);
+							let brightness = imageData.data[0] * 0.299 + imageData.data[1] * 0.587 + imageData.data[2] * 0.114;
+							if(brightness < 255 / 2) {
+								color = '#FFF';
+							} else {
+								color = '#000';
+							}
+						}
+
+
+						let translate = data.translate;
+						let fontSize = 13;
+
+						let rectWidth = data.boundingBox.x2 - data.boundingBox.x1;
+						let rectHeight = data.boundingBox.y2 - data.boundingBox.y1;
+
+						while(fontSize > 0) {
+							let letterSize = Math.floor(Math.pow(1.1, fontSize) * this.width / 100);
+							let horizontalLetterNum = Math.floor(rectWidth / letterSize);
+							let verticalLetterNum = Math.floor(rectHeight / (letterSize * 1.3));
+							if(horizontalLetterNum * verticalLetterNum >= translate.length) {
+
+								let returnedTranslate = [];
+								while(translate.length) {
+									returnedTranslate.push(translate.substring(0, horizontalLetterNum));
+									translate = translate.substring(horizontalLetterNum);
+								}
+								translate = returnedTranslate.join("\n");
+
+								break;
+							}
+							fontSize--;
+						}
+
+						translateData.push({ mode: 'fill', vertical: false, bgColor, color, x, y, width, height });
+						translateData.push({ mode: null,   vertical: false, bgColor, color, x, y, text: translate, fontSize });
+					}
+				}))
+				this.textList = translateData;
 
 			} finally {
 				this.translating = false;
 				container.scrollTop = originalScrollTop;
 			}
+		},
+
+		async translateBase64(base64) {
+
+			let result = await axios.post(
+				'https://vision.googleapis.com/v1/images:annotate?key=' + this.googleApiKey,
+				{
+					requests: [{
+						image: { content: base64.substring(base64.indexOf(',') + 1) },
+						features: [{ type: 'TEXT_DETECTION' }]
+					}]
+				}
+			);
+			result = result.data;
+
+			let paragraphs = [];
+			for(let page of result.responses[0].fullTextAnnotation.pages) {
+				for(let block of page.blocks) {
+					for(let paragraph of block.paragraphs) {
+						let text = "";
+
+						for(let word of paragraph.words) {
+							for(let symbol of word.symbols) {
+								text += symbol.text;
+							}
+						}
+
+						paragraphs.push({
+							boundingBox: {
+								x1: paragraph.boundingBox.vertices[0].x || 0,
+								y1: paragraph.boundingBox.vertices[0].y || 0,
+								x2: paragraph.boundingBox.vertices[2].x,
+								y2: paragraph.boundingBox.vertices[2].y,
+							},
+							text: text.replace("\n", ""),
+						})
+					}
+				}
+			}
+
+			let translateResult = await axios.post(
+				'https://translation.googleapis.com/language/translate/v2?key=' + this.googleApiKey,
+				{
+					q: paragraphs.map(x => x.text).join("\n"),
+					target: 'ja',
+					format: 'text',
+					source: 'zh',
+					model: this.translateModel || 'nmt',
+				}
+			);
+			translateResult = translateResult.data.data.translations[0].translatedText.split("\n");
+
+			if(paragraphs.length != translateResult.length) {
+				throw "翻訳に失敗しました。";
+			}
+
+			for(let i = 0; i < paragraphs.length; i++) {
+				paragraphs[i].translate = translateResult[i];
+			}
+
+			return paragraphs;
 		},
 
 		async sleep(time) {
@@ -556,6 +755,7 @@ export default {
 	left: 0;
 	width: 100vw;
 	height: 100vh;
+	z-index: 10;
 
 	display: flex;
 	justify-content: center;
@@ -565,6 +765,81 @@ export default {
 	color: #FFF;
 	font-size: 30px;
 	font-weight: bold;
+
+}
+
+.setting-cover {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 11;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.5);
+
+	& > div {
+		display: flex;
+		flex-direction: column;
+
+		font-size: 16px;
+
+		background-color: #FFF;
+		color: #222;
+		border-radius: 5px;
+		padding: 16px;
+		line-height: 1.3;
+
+		table {
+			border-spacing: 0;
+		}
+
+		th, td {
+			border-bottom: 1px #CCC solid;
+			padding: 5px 8px;
+			vertical-align: middle;
+		}
+
+		h2 {
+			font-size: 20px;
+			font-weight: bold;
+			margin: 0 0 20px;
+			padding: 0;
+			border-bottom: 1px #CCC solid;
+		}
+
+		input[type=text], select {
+			box-sizing: border-box;
+			display: block;
+			width: 250px;
+			margin: 0;
+			border: 1px #CCC solid;
+			padding: 5px 8px;
+			border-radius: 3px;
+		}
+
+		button {
+			margin-top: 20px;
+
+			background-color: #28F;
+			color: #FFF;
+			border: none;
+			padding: 5px 0;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		a {
+			margin-top: 5px;
+			display: block;
+			color: #048;
+			text-decoration: underline;
+			font-size: 12px;
+		}
+	}
 
 }
 

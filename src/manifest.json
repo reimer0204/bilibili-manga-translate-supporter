@@ -21,6 +21,7 @@
 	},
 
 	"permissions": [
-		"https://manga.bilibili.com/mc*"
+		"https://manga.bilibili.com/mc*",
+		"storage"
 	]
 }
